@@ -41,7 +41,7 @@ class PixelColor(QWidget):
         self.close()
         self.p.on_work = False
 
-    def stop_thread(self):
+    def reinitialization_get_pix(self):
         self.p = p
 
     def mousePressEvent(self, e):
@@ -90,7 +90,7 @@ app = QApplication(sys.argv)
 
 w = PixelColor()
 p = GetPix()
-w.stop_thread()
+w.reinitialization_get_pix()
 pp = tr.Thread(target=p.get_pix, args=())
 pp.start()
 
