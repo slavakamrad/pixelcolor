@@ -1,2 +1,2 @@
 # pixelcolor
-Program to get the color of the screen pixel
+Screen pixel color program
