@@ -1,2 +1,2 @@
 # pixelcolor
-Screen pixel color program
+Screen pixel color
