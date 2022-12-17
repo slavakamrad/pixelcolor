@@ -1,4 +1,6 @@
 import sys
+import time
+
 import pyautogui
 import threading as tr
 
@@ -10,10 +12,10 @@ class PixelColor(QWidget):
     def __init__(self):
         super().__init__()
         self.p = None
-        self.save_data = None
         self.setMouseTracking(True)
         self.setWindowFlag(Qt.WindowType.FramelessWindowHint)
-        self.setStyleSheet("background-color: #FF7F27; color: #fff;")
+        self.setStyleSheet("background-color: #FF7F27; "
+                           "color: #fff; Arial;font-style: normal;font-size: 8pt;font-weight: bold;")
         self.pixelColor = ''
         self.resize(200, 100)
         self.rgb = QLabel(self)
@@ -75,6 +77,7 @@ class GetPix:
     def get_pix(self):
         try:
             while self.on_work:
+                time.sleep(0.1)
                 x, y = pyautogui.position()
                 pixel_color = pyautogui.screenshot().getpixel((x, y))
                 self.rgb.pixelColor = str(pixel_color)
@@ -91,7 +94,6 @@ app = QApplication(sys.argv)
 w = PixelColor()
 p = GetPix()
 w.reinitialization_get_pix()
-pp = tr.Thread(target=p.get_pix, args=())
-pp.start()
+pp = tr.Thread(target=p.get_pix, args=()).start()
 
 sys.exit(app.exec())
